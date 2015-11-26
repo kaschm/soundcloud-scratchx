@@ -1,2 +1,1 @@
-# soundcloud-scratchx
-kaschm.github.io/soundcloud-scratchx
+http://kaschm.github.io/soundcloud-scratchx
