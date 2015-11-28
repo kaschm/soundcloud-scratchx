@@ -262,9 +262,9 @@ section.success a.active {
 
 .btn-outline {
     margin-top: 15px;
-    border: solid 2px #fff;
-    font-size: 20px;
-    color: #fff;
+    border: solid 2px #878686;
+    font-size: 15px;
+    color: #595959;
     background: 0 0;
     transition: all .3s ease-in-out;
 }
@@ -274,8 +274,8 @@ section.success a.active {
 .btn-outline:active,
 .btn-outline.active {
     border: solid 2px #fff;
-    color: #595959;
-    background: #fff;
+    color: #fff;
+    background: #2c3e50;
 }
 
 .floating-label-form-group {
