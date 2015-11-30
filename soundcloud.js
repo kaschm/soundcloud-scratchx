@@ -3,6 +3,7 @@
 
 (function(ext) {
     	var sound = null;
+        var sc_songID = 0;
         var soundcloud_id = 'f703c7a6871d553a7db785800792ccb8';
 	
 	$.getScript("https://connect.soundcloud.com/sdk/sdk-3.0.0.js", function(){
@@ -11,16 +12,31 @@
             redirect_uri: ' '
         });
 	});
-    
-    ext.sc_play = function(songID) {
-        if( sound ) {
-            sound.pause();
-            sound = null;
-        } else {
-            SC.stream("/tracks/" + songID).then(function(obj){
+
+    ext.sc_load = function(songID) {
+        sc_songID = songID; 
+        SC.get('/tracks/' + sc_songID).catch(function(error) {
+            alert('Error: '+ error.message + '. Load another song.');
+        });
+        
+        SC.stream("/tracks/" + sc_songID).then(function(obj){
+        obj.play();
+        sound = obj;    
+        });
+    };
+
+    ext.sc_play = function() {
+            SC.stream("/tracks/" + sc_songID).then(function(obj){
             obj.play();
             sound = obj;
-            });
+        });
+    };
+
+
+    ext.sc_pause = function() {
+        if( sound ) {
+            sound.pause();
+            sound = null; 
         }
     };
 
@@ -29,7 +45,10 @@
     		sound.pause();
     		sound.seek(0);
     		sound = null;
-    	}
+    	} else {
+            sound.seek(0);
+            sound = null; 
+        }
     };
 
     ext.get_id = function(location, callback) {
@@ -46,8 +65,8 @@
     };
 
     ext.get_title = function(location, callback) {
-        trackUrl = location;
-        $.get('http://api.soundcloud.com/resolve.json?url=' + trackUrl + '&client_id=' + soundcloud_id, 
+        songID = location;
+        $.get('http://api.soundcloud.com/tracks/' + songID + '?client_id=' + soundcloud_id, 
             function (result) {
                 console.log(result.title);
                 title_name = result.title;
@@ -56,6 +75,7 @@
             );
         return title_name;
     };
+
 
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
@@ -70,11 +90,13 @@
     var descriptor = {
         blocks: [
             // Block type, block name, function name, default value
-        ['R', 'Get ID for URL %s', 'get_id', 'https://soundcloud.com/robyn/stars-forever'], 
-        ['R', 'Get Title for URL %s', 'get_title', 'https://soundcloud.com/robyn/stars-forever'],           
-        [' ', 'Play / Pause Song ID: %s', 'sc_play', '7379697'],
-		[' ', 'Stop Song', 'sc_stop']
-			
+        [' ', 'Load Song ID: %s', 'sc_load', '7379697'],
+        ['R', 'Get ID for URL: %s', 'get_id', 'https://soundcloud.com/robyn/stars-forever'],
+        [' ', 'Play Song', 'sc_play'],
+        [' ', 'Pause Song', 'sc_pause'],
+		[' ', 'Stop Song', 'sc_stop'],
+        ['R', 'Title of Song ID: %s', 'get_title', '7379697']
+
         ]
     };
 

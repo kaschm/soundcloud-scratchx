@@ -106,7 +106,7 @@
                 <div class="col-lg-12 text-center">
                     <p><a href=></a>ScratchX is a playground for experimental extensions using the familiar blocks and interface from <a href="scratch.mit.edu" target="_blank">Scratch</a>, an online, block-based programming tool and community. You can learn more about ScratchX by visiting <a href="http://scratchx.org">scratchx.org</a>, and more about the SoundCloud API via their <a href="https://developers.soundcloud.com/docs/api/guide">Developer Documentation page</a>.</p>
                     <p>
-                    <img class="img-responsive center-block" src="res/about_blocks_sm.png" alt="">
+                    <img class="img-responsive center-block" src="res/about_blocks.png" alt="">
                     <p></p>
                     Scratch is a project of the Lifelong Kindergarten at the MIT Media Lab.
                 </div>
@@ -122,14 +122,26 @@
                 <div class="col-lg-12 text-center">
                     <h2>How to Use</h2>
                     <p>
-                    <p> There are four new blocks with this extension that enable you to find and play songs from SoundCloud using the SoundCloud API.</p>
+                    <p> There are six new blocks with this extension that enable you to find and play songs from SoundCloud using the SoundCloud API.</p>
                 </div>
             </div>
 
         <div class="row">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive" src="res/get_id.png" alt="">
+                    <img class="img-responsive" src="res/blocks_load.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Load Song ID</h3>
+                <p>Use this block to load the song from SoundCloud, using its SongCloud ID. You can use the "Get ID" block, below, to find the ID from the Song URL. Songs that do not exist will throw an error.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="res/blocks_get_id.png" alt="">
                 </a>
             </div>
             <div class="col-md-5">
@@ -141,24 +153,12 @@
                 <div class="row">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive" src="res/get_title.png" alt="">
+                    <img class="img-responsive" src="res/blocks_play.png" alt="">
                 </a>
             </div>
             <div class="col-md-5">
-                <h3>Get Title of Song</h3>
-               <p>This block will return the Title of the Song based on the URL pasted in the blank area. </p>
-            </div>
-        </div>
-
-                <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="res/play_pause.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Play / Pause Song</h3>
-                <p>This block will play or pause the song whose ID has been pasted in the blank area. To find a song's ID, use the 'Get Song ID' block above.</p>
+                <h3>Play Song</h3>
+                <p>This block will play the song whose ID has been loaded via the Load Song ID block.</p>
                 <p>
             </div>
         </div>
@@ -166,16 +166,41 @@
                 <div class="row">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive" src="res/stop.png" alt="">
+                    <img class="img-responsive" src="res/blocks_pause.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Pause Song</h3>
+                <p>This block will pause the song that is currently playing. Clicking the Play button will resume play at the point it was paused.</p>
+                <p>
+            </div>
+        </div>
+
+                 <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="res/blocks_stop.png" alt="">
                 </a>
             </div>
             <div class="col-md-5">
                 <h3>Stop Song</h3>
-                <p>Using this block will stop the current song from playing. Playing the song again will cause it to start from the beginning (unlike the play/pause, which will pick up where it left off).</p>
+                <p>Using this block will stop the current song from playing. Playing the song again will cause it to start from the beginning.</p>
                 <p>
             </div>
         </div>
+                <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="res/blocks_title.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Get Title of Song</h3>
+               <p>This block will return the Title of the Song based on the ID pasted in the blank area. </p>
+            </div>
+        </div>
     </div>
+
     </section>
 
    <!-- Sample Section -->
@@ -193,49 +218,16 @@
         <div class="row">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive" src="res/about_blocks_sm.png" alt="">
+                    <img class="img-responsive" src="res/sample_jukebox.png" alt="">
                 </a>
             </div>
             <div class="col-md-5">
-                <h3>Music Video</h3>
-                <p>Hit green flag to start the music and visualization simultaneously.</p>
+                <h3>Jukebox</h3>
+                <p>Click the button on the jukebox to play a random song from the jukebox.</p>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="http://thekasia.com" class="btn btn-lg btn-outline"> Open Sample Project
+                    <a href="scratchx.org/?url=http://kaschm.github.io/…/jukebox.sbx" class="btn btn-lg btn-outline"> Open Sample Project
                     </a>
                 </div>  
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="res/about_blocks_sm.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Hand-wave Playlist</h3>
-                <p>Use your webcam to control when each song plays. Movement over each area will start and pause different songs.</p>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="http://thekasia.com" class="btn btn-lg btn-outline"> Open Sample Project
-                    </a>
-                </div>  
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="res/about_blocks_sm.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Random title selector</h3>
-                <p>Randomly create IDs, then see what titles correspond with those IDs in the database.</p>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="http://thekasia.com" class="btn btn-lg btn-outline"> Open Sample Project
-                    </a>
-                </div>              
-            </div>
-        </div>
-      
             </div>
         </div>
     </section>
