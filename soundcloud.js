@@ -17,7 +17,7 @@
     ext.sc_load = function(songID, title_name) {
         sc_songID = songID; 
         SC.get('/tracks/' + sc_songID).catch(function(error) {
-            alert('Error: '+ error.message + '. Try another song.');
+            alert('That song does not exist ('+ error.message + '). Try another song.');
         });
         
         $.get('http://api.soundcloud.com/tracks/' + songID + '?client_id=' + soundcloud_id, 
