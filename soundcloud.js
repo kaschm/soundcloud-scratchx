@@ -5,7 +5,8 @@
     	var sound = null;
         var sc_songID = 0;
         var soundcloud_id = 'f703c7a6871d553a7db785800792ccb8';
-        var titleName = 'No Song Loaded!'
+        var titleName = 'No Song'
+        var userName = 'No Song'
 	
 	$.getScript("https://connect.soundcloud.com/sdk/sdk-3.0.0.js", function(){
         SC.initialize({
@@ -25,6 +26,9 @@
                 console.log(result.title);
                 title_name = result.title;
                 titleName = title_name;
+                console.log(result.user.username);
+                user_name = result.user.username;
+                userName = user_name;
         });
     };
 
@@ -67,8 +71,8 @@
         return track_id;
     };
 
-    ext.get_title = function() {
-        alert(titleName);
+    ext.get_info = function() {
+        alert('TITLE: '+ titleName +', ARTIST: ' + userName);
     };
 
 
@@ -90,7 +94,7 @@
         [' ', 'Play Song', 'sc_play'],
         [' ', 'Pause Song', 'sc_pause'],
 		[' ', 'Stop Song', 'sc_stop'],
-        [' ', 'Show Title of Current Song', 'get_title']
+        [' ', 'Show Info for Current Song', 'get_info']
 
         ]
     };
