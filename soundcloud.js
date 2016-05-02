@@ -5,6 +5,7 @@
     	var sound = null;
         var sc_songID = 0;
         var soundcloud_id = 'f703c7a6871d553a7db785800792ccb8';
+        var titleName = 'No Song Loaded!'
 	
 	$.getScript("https://connect.soundcloud.com/sdk/sdk-3.0.0.js", function(){
         SC.initialize({
@@ -13,15 +14,17 @@
         });
 	});
 
-    ext.sc_load = function(songID) {
+    ext.sc_load = function(songID, title_name) {
         sc_songID = songID; 
         SC.get('/tracks/' + sc_songID).catch(function(error) {
-            alert('Error: '+ error.message + '. Load another song.');
+            alert('Error: '+ error.message + '. Try another song.');
         });
         
-        SC.stream("/tracks/" + sc_songID).then(function(obj){
-        obj.play();
-        sound = obj;    
+        $.get('http://api.soundcloud.com/tracks/' + songID + '?client_id=' + soundcloud_id, 
+            function (result) {
+                console.log(result.title);
+                title_name = result.title;
+                titleName = title_name;
         });
     };
 
@@ -64,16 +67,8 @@
         return track_id;
     };
 
-    ext.get_title = function(location, callback) {
-        songID = location;
-        $.get('http://api.soundcloud.com/tracks/' + songID + '?client_id=' + soundcloud_id, 
-            function (result) {
-                console.log(result.title);
-                title_name = result.title;
-                callback(title_name);
-            }
-            );
-        return title_name;
+    ext.get_title = function() {
+        alert(titleName);
     };
 
 
@@ -90,12 +85,12 @@
     var descriptor = {
         blocks: [
             // Block type, block name, function name, default value
-        [' ', 'Load Song ID: %s', 'sc_load', '7379697'],
-        ['R', 'Get ID for URL: %s', 'get_id', 'https://soundcloud.com/robyn/stars-forever'],
+        [' ', 'Load Song ID: %s', 'sc_load', '93497911'],
+        ['R', 'Get ID for URL: %s', 'get_id', 'http://soundcloud.com/b-sett/lost-in-thought-b-sett'],
         [' ', 'Play Song', 'sc_play'],
         [' ', 'Pause Song', 'sc_pause'],
 		[' ', 'Stop Song', 'sc_stop'],
-        ['R', 'Title of Song ID: %s', 'get_title', '7379697']
+        [' ', 'Show Title of Current Song', 'get_title']
 
         ]
     };
