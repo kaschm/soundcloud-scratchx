@@ -5,7 +5,7 @@
     	var sound = null;
         var sc_songID = 0;
         var soundcloud_id = 'f703c7a6871d553a7db785800792ccb8';
-        var titleName = 'No Song'
+        var titleName = 'No Song';
         var userName = 'No Song'
 	
 	$.getScript("https://connect.soundcloud.com/sdk/sdk-3.0.0.js", function(){
